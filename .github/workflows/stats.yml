@@ -1,0 +1,39 @@
+name: Refresh GfG stats
+
+on:
+  schedule:
+    # 02:30 UTC = 08:00 IST, after the day's problem is usually solved.
+    - cron: "30 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stats
+  cancel-in-progress: true
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # No dependencies: the profile page embeds its own JSON, so urllib is enough.
+      - name: Read the profile
+        run: python scripts/stats.py ankitnehra20cse
+
+      - name: Commit if anything changed
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "nothing to commit"
+            exit 0
+          fi
+          git config user.name "Ankit Nehra"
+          git config user.email "ankit.nehra.20cse@bmu.edu.in"
+          git add README.md
+          git commit -m "Refresh solved count and streak"
+          git push

@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Commit today's problem-of-the-day solution.
+#
+#   ./potd "Kadane's Algorithm" medium solution.java
+#   ./potd "Trapping Rain Water" hard          # opens an empty file for you to paste into
+#
+# Files land in solutions/<difficulty>/<slug>.<ext> and the commit message carries the problem
+# name, so `git log` reads as a record of what was actually solved rather than "update".
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+if [ $# -lt 2 ]; then
+  echo "usage: ./potd \"<problem name>\" <school|basic|easy|medium|hard> [source file]" >&2
+  exit 1
+fi
+
+NAME="$1"
+DIFF="$(echo "$2" | tr '[:upper:]' '[:lower:]')"
+SRC="${3:-}"
+
+case "$DIFF" in
+  school|basic|easy|medium|hard) ;;
+  *) echo "difficulty must be one of: school basic easy medium hard" >&2; exit 1 ;;
+esac
+
+# Slug: lowercase, non-alphanumerics collapsed to single dashes.
+SLUG="$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')"
+mkdir -p "solutions/$DIFF"
+
+if [ -n "$SRC" ]; then
+  [ -f "$SRC" ] || { echo "no such file: $SRC" >&2; exit 1; }
+  EXT="${SRC##*.}"
+  DEST="solutions/$DIFF/$SLUG.$EXT"
+  cp "$SRC" "$DEST"
+else
+  DEST="solutions/$DIFF/$SLUG.java"
+  if [ ! -f "$DEST" ]; then
+    printf '// %s\n// https://www.geeksforgeeks.org/problems/%s\n\n' "$NAME" "$SLUG" > "$DEST"
+  fi
+  "${EDITOR:-vi}" "$DEST"
+fi
+
+# Refuse to commit a file with no actual solution in it -- an empty daily commit is worse than
+# no commit, because it looks like activity while proving nothing.
+if [ "$(grep -vcE '^\s*(//|#|$)' "$DEST")" -eq 0 ]; then
+  echo "nothing but comments in $DEST — not committing" >&2
+  exit 1
+fi
+
+git add "$DEST"
+git commit -q -m "$NAME ($DIFF)"
+echo "committed $DEST"
+
+if [ "${PUSH:-1}" = "1" ]; then
+  git push -q origin HEAD && echo "pushed"
+fi
