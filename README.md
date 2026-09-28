@@ -22,7 +22,7 @@ nothing is worse than no commit.
 
 | Problems solved | Coding score | Institute rank | Longest streak |
 |:---:|:---:|:---:|:---:|
-| **533** | **1842** | **#4** | **24 days** |
+| **535** | **1854** | **#4** | **24 days** |
 
 </div>
 
@@ -30,7 +30,7 @@ nothing is worse than no commit.
 
 [→ GeeksforGeeks profile](https://www.geeksforgeeks.org/profile/ankitnehra20cse)
 
-<sub>Updated 25 Sep 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
+<sub>Updated 28 Sep 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
 
 <!-- stats:end -->
 
