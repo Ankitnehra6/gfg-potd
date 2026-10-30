@@ -22,15 +22,15 @@ nothing is worse than no commit.
 
 | Problems solved | Coding score | Institute rank | Longest streak |
 |:---:|:---:|:---:|:---:|
-| **548** | **1898** | **#3** | **24 days** |
+| **549** | **1906** | **#3** | **24 days** |
 
 </div>
 
-85 problems-of-the-day solved · current streak 1 days · BML Munjal University (BMU) Gurgaon
+86 problems-of-the-day solved · current streak 2 days · BML Munjal University (BMU) Gurgaon
 
 [→ GeeksforGeeks profile](https://www.geeksforgeeks.org/profile/ankitnehra20cse)
 
-<sub>Updated 29 Oct 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
+<sub>Updated 30 Oct 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
 
 <!-- stats:end -->
 
