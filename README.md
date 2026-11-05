@@ -26,11 +26,11 @@ nothing is worse than no commit.
 
 </div>
 
-87 problems-of-the-day solved · current streak 1 days · BML Munjal University (BMU) Gurgaon
+87 problems-of-the-day solved · current streak 0 days · BML Munjal University (BMU) Gurgaon
 
 [→ GeeksforGeeks profile](https://www.geeksforgeeks.org/profile/ankitnehra20cse)
 
-<sub>Updated 03 Nov 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
+<sub>Updated 05 Nov 2026 · refreshed daily by [stats.yml](.github/workflows/stats.yml)</sub>
 
 <!-- stats:end -->
 
